@@ -14,9 +14,11 @@ void WaterBehavior(Particle **grid, int x, int y)
     bool canDiagonalRight = false;
     bool canDiagonalLeft = false;
 
-    if (verifyDiagonal(grid, x, y, EMPTY, 1))
+    if (verifyDiagonal(grid, x, y, EMPTY, 1) &&
+        verifySide(grid, x, y, EMPTY, 1))
         canDiagonalRight = true;
-    if (verifyDiagonal(grid, x, y, EMPTY, -1))
+    if (verifyDiagonal(grid, x, y, EMPTY, -1) &&
+        verifySide(grid, x, y, EMPTY, -1))
         canDiagonalLeft = true;
 
     if (canDiagonalRight && canDiagonalLeft)
