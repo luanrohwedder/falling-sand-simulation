@@ -6,7 +6,7 @@ SRC_DIR = src
 BUILD_DIR = build
 BIN_DIR = bin
 
-SRCS = $(wildcard $(SRC_DIR)/*.c)
+SRCS = $(wildcard $(SRC_DIR)/*.c $(SRC_DIR)/ui/*.c)
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRCS))
 EXEC = game
 
