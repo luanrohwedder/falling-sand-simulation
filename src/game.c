@@ -99,6 +99,8 @@ void Draw(void)
 {
     ClearBackground(BLACK);
 
+    DrawParticle(grid);
+
     DrawText(TextFormat("Selected: %s", getParticleString(selectedParticle)),
              30, 20, 20, RAYWHITE);
 
@@ -112,8 +114,6 @@ void Draw(void)
 
     DrawText("R - RESET", 1100, 20, 20, RAYWHITE);
     DrawText(TextFormat("BRUSH SIZE: %d", brushSize), 1100, 50, 20, RAYWHITE);
-
-    DrawParticle(grid);
 }
 
 Particle **CreateGrid(void)
