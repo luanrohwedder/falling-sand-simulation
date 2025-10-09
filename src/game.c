@@ -81,7 +81,7 @@ void Update(void)
         int x = (int)GetMousePosition().x / CELL_SIZE;
         int y = (int)GetMousePosition().y / CELL_SIZE;
 
-        if (isEmpty(grid, x, y))
+        if (IsEmpty(grid, x, y))
         {
             if (selectedParticle == SAND)
                 CreateSand(grid, x, y, brushSize);
@@ -101,7 +101,7 @@ void Draw(void)
 
     DrawParticle(grid);
 
-    DrawText(TextFormat("Selected: %s", getParticleString(selectedParticle)),
+    DrawText(TextFormat("Selected: %s", GetParticleString(selectedParticle)),
              30, 20, 20, RAYWHITE);
 
     for (int i = 0; i < 3; i++)

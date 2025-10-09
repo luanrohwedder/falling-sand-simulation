@@ -1,33 +1,28 @@
 #include "particle.h"
 #include <stdbool.h>
 
-bool isEmpty(Particle **grid, int x, int y) { return grid[y][x].type == EMPTY; }
-
-bool verifyDown(Particle **grid, int x, int y, int type)
+bool IsEmpty(Particle **grid, int x, int y)
 {
-    return grid[y + 1][x].type == type;
+    if (x < 0 || x >= COLS || y < 0 || y >= ROWS)
+        return false;
+    return grid[y][x].type == EMPTY;
 }
 
-bool verifyDiagonal(Particle **grid, int x, int y, int type, int direction)
+bool IsParticle(Particle **grid, int x, int y, Particles particle)
 {
-    int nx = x + direction;
-    return nx < COLS && nx >= 0 && grid[y + 1][nx].type == type;
+    if (x < 0 || x >= COLS || y < 0 || y >= ROWS)
+        return false;
+    return grid[y][x].type == particle;
 }
 
-bool verifySide(Particle **grid, int x, int y, int type, int direction)
-{
-    int nx = x + direction;
-    return nx < COLS && nx >= 0 && grid[y][nx].type == type;
-}
-
-void swapParticle(Particle **grid, int orgX, int orgY, int destX, int destY)
+void SwapParticle(Particle **grid, int orgX, int orgY, int destX, int destY)
 {
     Particle temp = grid[orgY][orgX];
     grid[orgY][orgX] = grid[destY][destX];
     grid[destY][destX] = temp;
 }
 
-char *getParticleString(int type)
+char *GetParticleString(int type)
 {
     if (type == SAND)
         return "SAND";

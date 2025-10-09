@@ -11,8 +11,10 @@ void CreateStone(Particle **grid, int x, int y, int brushSize)
         for (int j = 0; j < brushSize && x + j < COLS; j++)
         {
             int rand = GetRandomValue(0, 1);
-            grid[y + i][x + j] = (Particle){
-                .type = STONE, .color = color[rand], .behavior = StoneBehavior};
+            if (IsEmpty(grid, x + j, y + i))
+                grid[y + i][x + j] = (Particle){.type = STONE,
+                                                .color = color[rand],
+                                                .behavior = StoneBehavior};
         }
     }
 }

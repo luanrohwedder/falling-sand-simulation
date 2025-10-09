@@ -22,19 +22,16 @@ struct Particle
 {
     int type;
     Color color;
-    int lastDir;
     void (*behavior)(Particle **grid, int x, int y);
 };
 
 /*
  * Util Methods
  */
-bool isEmpty(Particle **grid, int x, int y);
-bool verifyDown(Particle **grid, int x, int y, int type);
-bool verifyDiagonal(Particle **grid, int x, int y, int type, int direction);
-bool verifySide(Particle **grid, int x, int y, int type, int direction);
-void swapParticle(Particle **grid, int x1, int y1, int x2, int y2);
-char *getParticleString(int type);
+bool IsEmpty(Particle **grid, int x, int y);
+bool IsParticle(Particle **grid, int x, int y, Particles particle);
+void SwapParticle(Particle **grid, int x1, int y1, int x2, int y2);
+char *GetParticleString(int type);
 
 /*
  * Core Methods
