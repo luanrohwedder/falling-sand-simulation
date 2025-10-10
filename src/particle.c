@@ -30,6 +30,8 @@ char *GetParticleString(int type)
         return "WATER";
     if (type == STONE)
         return "STONE";
+    if (type == WOOD)
+        return "WOOD";
 
     return "";
 }

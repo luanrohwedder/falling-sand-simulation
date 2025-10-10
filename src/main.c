@@ -3,6 +3,7 @@
 #include "stone.h"
 #include "ui/button.h"
 #include "water.h"
+#include "wood.h"
 
 #include <raylib.h>
 #include <stdbool.h>
@@ -21,7 +22,7 @@ int brushSize = 3;
 int selectedParticle = STONE;
 bool reset = false;
 Particle **grid;
-Button buttons[3];
+Button buttons[4];
 
 int main(void)
 {
@@ -65,6 +66,8 @@ void Update(void)
         selectedParticle = WATER;
     if (IsButtonPressed(buttons[2]) || IsKeyPressed(KEY_THREE))
         selectedParticle = STONE;
+    if (IsButtonPressed(buttons[3]) || IsKeyPressed(KEY_FOUR))
+        selectedParticle = WOOD;
 
     // BRUSH SIZE
     brushSize += (int)GetMouseWheelMove();
@@ -89,6 +92,8 @@ void Update(void)
                 CreateWater(grid, x, y, brushSize);
             if (selectedParticle == STONE)
                 CreateStone(grid, x, y, brushSize);
+            if (selectedParticle == WOOD)
+                CreateWood(grid, x, y, brushSize);
         }
     }
 
@@ -104,9 +109,10 @@ void Draw(void)
     DrawText(TextFormat("Selected: %s", GetParticleString(selectedParticle)),
              30, 20, 20, RAYWHITE);
 
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 4; i++)
     {
         DrawRectangleRec(buttons[i].rect, buttons[i].color);
+        DrawRectangleLinesEx(buttons[i].rect, 1, RAYWHITE);
         if (IsMouseOverButton(buttons[i]))
             DrawText(buttons[i].text, buttons[i].rect.x, buttons[i].rect.y + 30,
                      15, RAYWHITE);
@@ -151,4 +157,7 @@ void CreateButtons()
     buttons[2] =
         CreateButton((Rectangle){.x = 310, .y = 20, .height = 20, .width = 20},
                      LIGHTGRAY, "STONE");
+    buttons[3] =
+        CreateButton((Rectangle){.x = 340, .y = 20, .height = 20, .width = 20},
+                     BROWN, "WOOD");
 }

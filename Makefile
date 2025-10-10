@@ -1,5 +1,6 @@
 
 CC = cc
+CFLAGS = -g
 LDFLAGS = -lraylib -lGL -lm -lpthread -ldl -lrt
 
 SRC_DIR = src
@@ -14,10 +15,10 @@ all: $(EXEC)
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
-	$(CC) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(EXEC): $(OBJS)
-	$(CC) $^ -o $@ $(LDFLAGS)
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 clean:
 	rm -rf $(BUILD_DIR) $(BIN_DIR)

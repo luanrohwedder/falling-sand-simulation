@@ -14,6 +14,7 @@ typedef enum
     SAND = 1,
     WATER = 2,
     STONE = 3,
+    WOOD = 4,
 } Particles;
 
 typedef struct Particle Particle;
