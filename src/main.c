@@ -1,3 +1,4 @@
+#include "fire.h"
 #include "particle.h"
 #include "sand.h"
 #include "stone.h"
@@ -22,7 +23,7 @@ int brushSize = 3;
 int selectedParticle = STONE;
 bool reset = false;
 Particle **grid;
-Button buttons[4];
+Button buttons[5];
 
 int main(void)
 {
@@ -68,6 +69,8 @@ void Update(void)
         selectedParticle = STONE;
     if (IsButtonPressed(buttons[3]) || IsKeyPressed(KEY_FOUR))
         selectedParticle = WOOD;
+    if (IsButtonPressed(buttons[4]) || IsKeyPressed(KEY_FIVE))
+        selectedParticle = FIRE;
 
     // BRUSH SIZE
     brushSize += (int)GetMouseWheelMove();
@@ -94,6 +97,8 @@ void Update(void)
                 CreateStone(grid, x, y, brushSize);
             if (selectedParticle == WOOD)
                 CreateWood(grid, x, y, brushSize);
+            if (selectedParticle == FIRE)
+                CreateFire(grid, x, y, brushSize);
         }
     }
 
@@ -109,7 +114,7 @@ void Draw(void)
     DrawText(TextFormat("Selected: %s", GetParticleString(selectedParticle)),
              30, 20, 20, RAYWHITE);
 
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 5; i++)
     {
         DrawRectangleRec(buttons[i].rect, buttons[i].color);
         DrawRectangleLinesEx(buttons[i].rect, 1, RAYWHITE);
@@ -160,4 +165,6 @@ void CreateButtons()
     buttons[3] =
         CreateButton((Rectangle){.x = 340, .y = 20, .height = 20, .width = 20},
                      BROWN, "WOOD");
+    buttons[4] = CreateButton(
+        (Rectangle){.x = 370, .y = 20, .height = 20, .width = 20}, RED, "FIRE");
 }

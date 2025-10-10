@@ -32,6 +32,8 @@ char *GetParticleString(int type)
         return "STONE";
     if (type == WOOD)
         return "WOOD";
+    if (type == FIRE)
+        return "FIRE";
 
     return "";
 }
@@ -42,7 +44,16 @@ void UpdateParticle(Particle **grid)
     {
         for (int x = 0; x < COLS; x++)
         {
-            if (grid[y][x].behavior)
+            if (grid[y][x].behavior && grid[y][x].type != FIRE)
+                grid[y][x].behavior(grid, x, y);
+        }
+    }
+
+    for (int y = 0; y < ROWS; y++)
+    {
+        for (int x = 0; x < COLS; x++)
+        {
+            if (grid[y][x].type == FIRE)
                 grid[y][x].behavior(grid, x, y);
         }
     }

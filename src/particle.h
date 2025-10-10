@@ -15,6 +15,7 @@ typedef enum
     WATER = 2,
     STONE = 3,
     WOOD = 4,
+    FIRE = 5,
 } Particles;
 
 typedef struct Particle Particle;
@@ -23,6 +24,7 @@ struct Particle
 {
     int type;
     Color color;
+    float lifeTime;
     void (*behavior)(Particle **grid, int x, int y);
 };
 
