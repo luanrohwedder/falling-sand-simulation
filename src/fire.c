@@ -76,7 +76,7 @@ void FireBehavior(Particle **grid, int x, int y)
 
     if (IsParticle(grid, nx, ny, WOOD))
     {
-        grid[ny][nx] = (Particle){0};
+        grid[ny][nx].lifeTime = 1.5f;
     }
 }
 
